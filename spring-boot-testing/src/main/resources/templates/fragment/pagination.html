@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<body>
+
+<!--
+페이징 컴포넌트
+page 가 전역변수로 있어야함
+-->
+<div th:fragment="paging(addr)">
+    <ul class="pagination pagination-lg m-t-0 m-b-10"
+        th:with="totalPages = ${page.totalPages == 0 ? 1 : page.totalPages},
+                start=${page.number > totalPages ? totalPages : T(Math).floor(page.number/ 10) * 10 + 1},
+                last=(${start + 9 < page.totalPages ? start + 9 : totalPages})">
+        <li>
+            <a href="javascript:;"
+               th:href="@{${addr}(page=1)}"
+            >«</a>
+        </li>
+
+        <li th:class="arrow" th:classappend="${page.first} ? 'disabled'">
+            <a th:href="${page.first} ? '#' :@{${addr}(page=${page.number})}"
+               aria-label="Previous">
+                &lt;
+            </a>
+        </li>
+
+        <li th:each="pageSeq: ${#numbers.sequence(start, last)}"
+            th:classappend="${pageSeq == page.number + 1} ? 'active'">
+            <a th:text="${pageSeq}" th:href="@{${addr}(page=${pageSeq})}"></a>
+        </li>
+
+        <li th:class="arrow" th:classappend="${page.last} ? 'disabled'">
+            <a th:href="${page.last} ? '#' : @{${addr}(page=${page.number + 2})}"
+               aria-label="Next">
+                &gt;
+            </a>
+        </li>
+
+        <li th:class="arrow">
+            <a th:href="@{${addr}(page=${totalPages})}" aria-label="Last">
+                »
+            </a>
+        </li>
+
+    </ul>
+</div>
+
+</body>
+</html>

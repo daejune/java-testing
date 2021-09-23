@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<body>
+
+<div class="content-wrapper" layout:fragment="content-body">
+    <span class="hello">hello</span>
+    <span th:text="${name}">이름받을 곳</span>
+    <span>index page 입니다.</span>
+</div>
+
+</body>
+</html>

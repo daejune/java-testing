@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<body>
+
+<div class="content-wrapper" layout:fragment="content-body">
+
+    <div th:each="member : ${page.content}">
+        유저 이름 : <span th:text="${member.username}"></span><br>
+        유저 비밀번호 : <span th:text="${member.password}"></span>
+    </div>
+    <div th:replace="~{fragment/pagination :: paging('/member/page') }"></div>
+
+    <div th:if="${#lists.isEmpty(page.content)}">
+        회원이 존재하지 않습니다.
+    </div>
+    <a href="/member/form">
+        <button type="button">회원 생성</button>
+    </a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+>
+<body>
+
+<nav th:fragment="nav">
+    <ul>
+        <li>
+            <a href="/">홈</a>
+        </li>
+        <li>
+            <a href="/member/page">멤버</a>
+        </li>
+        <li>
+            <a href="/board/page">게시판</a>
+        </li>
+
+        <li>
+            <a href="/userpage">유저페이지</a>
+        </li>
+
+        <li>
+            <a href="/admin">어드민 페이지</a>
+        </li>
+
+        <li sec:authorize="isAnonymous()">
+            <a href="/login">로그인</a>
+        </li>
+        <li sec:authorize="isAuthenticated()">
+            <span>접속한 유저 : </span>
+            <span sec:authentication="name">tester@name.com</span>
+            <a href="/logout">로그아웃</a>
+        </li>
+    </ul>
+</nav>
+
+</body>
+</html>

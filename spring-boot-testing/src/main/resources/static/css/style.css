@@ -1,0 +1,10 @@
+.hello{
+    color:red;
+}
+
+.pagination li{
+    display:inline-block;
+}
+.pagination li.active a{
+	color:red;
+}

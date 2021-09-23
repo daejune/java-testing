@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}"
+>
+<body>
+
+
+<div class="content-wrapper" layout:fragment="content-body">
+    <h1>회원 생성 페이지</h1>
+    <form method="post" th:object="${form}">
+        <div th:replace="~{fragment/elements :: frag_input('이메일', 'username', 20)}"></div>
+        <div th:replace="~{fragment/elements :: frag_input('비밀번호', 'password', 20)}"></div>
+        <div th:replace="~{fragment/elements :: frag_input('비밀번호 확인', 'passwordConfirm', 20)}"></div>
+        <br>
+        <input type="submit">
+    </form>
+</div>
+
+
+</body>
+</html>
